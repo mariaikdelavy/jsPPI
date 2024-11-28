@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Palíndromo</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input{
+            margin: 10px;
+            padding: 5px;
+            font-size: 15px;
+            width: 200px;
+            text-align: center;
+        }
+        button{
+            padding: 10px 20px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        #result{
+            font-size: 18px;
+            margin-top: 20px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Verificar Palíndromo</h1>
+    <label for="word">Digite uma palavra:</label>
+    <input type="text" id="word" placeholder="Ex: aba">
+    <br>
+    <button id="checkButton">Verificar</button>
+    <div id="result">Resultado: </div>
+
+    <script>
+        function isPalindrome(word){
+            const reverseWord=word.split('').reverse().join('');
+            return word===reverseWord;
+        }
+
+        function handleButtonClick(){
+            const wordInput=document.getElementById("word");
+            const word=wordInput.value.trim().toLowerCase();
+
+            if(!word){
+                resultDiv.textContent="Erro: insira uma palavra válida";
+                return;
+            }
+
+            const resultDiv=document.getElementById("result");
+
+            if(isPalindrome(word)){
+                resultDiv.textContent="Resultado: A palavra é um palíndromo!";
+            }else{
+                resultDiv.textContent="Resultado: A palavra não é um palíndromo.";
+            }
+        }
+
+        const checkButton=document.getElementById("checkButton");
+        checkButton.addEventListener("click", handleButtonClick);
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Cliques</title>
+    <style>
+        body{
+            font-family: Arial,  sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #count{
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        button{
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contador de cliques</h1>
+    <div id="count">0</div>
+    <button id="incrementButton">Clique aqui</button>
+
+    <script>
+        let clickCount= 0;
+
+        const countDisplay=document.getElementById("count");
+        const incrementButton=document.getElementById("incrementButton");
+
+        function incrementCounter(){
+            clickCount++;
+            countDisplay.textContent=clickCount;
+            console.log('Contador atualizado: ' +clickCount);
+        }
+
+        incrementButton.addEventListener("click", incrementCounter);
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio de Númeor com Intervalo</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        input{
+            margin: 10px;
+            padding: 5px;
+            font-size: 15px;
+            width: 100px;
+            text-align: center;
+        }
+        button{
+            padding: 10px 20px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        #result{
+            font-size: 18px;
+            margin-top: 20px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <label for="min">Mínimo:</label>
+    <input type="number" id="min" placeholder="Ex: 10">
+    <br>
+    <label for="max">Máximo:</label>
+    <input type="number" id="max" placeholder="Ex: 20">
+    <br>
+    <button id="generateButton">Gerar Número Aleatório</button>
+    <div id="result">Número aleatório:</div>
+
+    <script>
+        const generateButton=document.getElementById("generateButton");
+        const resultDiv=document.getElementById("result");
+
+        function generateRandomNumber(){
+            const minInput=document.getElementById("min");
+            const maxInput=document.getElementById("max");
+
+            const min=parseInt(minInput.value);
+            const max=parseInt(maxInput.value);
+
+            if(isNaN(min)||isNaN(max)||min>=max){
+                resultDiv.textContent="Erro: insira valores válidos e certifique-se de que mínimo < máximo";
+                return;
+            }
+
+            const randomNumber=Math.floor(Math.random()*(max-min+1))+min;
+
+            resultDiv.textContent="Número aleatório: " + randomNumber;
+        }
+
+        generateButton.addEventListener("click", generateRandomNumber);
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar número aleatório</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        button{
+            padding: 10px 20px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        #result{
+            font-size: 18px;
+            margin-top: 20px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <button id="generateButton">Gerar Número Aleatório</button>
+    <div id="result">Número aleatório: </div>
+
+    <script>
+        const generateButton=document.getElementById("generateButton");
+        const resultDiv=document.getElementById("result");
+
+        function generateRandomNumber(){
+            const randomNumber=Math.floor(Math.random()*100)+1;
+            resultDiv.textContent="Número aleatório: " + randomNumber;
+        }
+
+        generateButton.addEventListener("click", generateRandomNumber);
+    </script>
+</body>
+</html>

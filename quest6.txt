@@ -1,0 +1,4 @@
+Maria Isabel Klein Delavy
+6) A diferença entreos dois códigos é o local em que foi inserido o <script>, o segundo apresenta problema na execução
+pois o <script> está dentro do <head> ao invés de estra dentro do <body>, não que ele não possa estra inserido dentro 
+do <head>, porém nesse caso para que evita que ele seja carregado antes do id="output", o que causa problema na execução.
