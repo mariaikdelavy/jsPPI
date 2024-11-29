@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecla Pressionada</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: white;
+        }
+        .key-display{
+            width: 80%;
+            max-width: 600px;
+            height: auto;
+            min-height: 150px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+        }
+        .key-item{
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="key-display" id="keyDisplay">
+    </div>
+
+    <script>
+        const keyDisplay=document.getElementById('keyDisplay');
+
+        document.addEventListener('keydown', (event)=>{
+            const key=event.key;
+
+            const keyItem=document.createElement('div');
+            keyItem.classList.add('key-item');
+            keyItem.textContent = `Tecla pressionada: "${key}"`;
+            keyDisplay.appendChild(keyItem);
+        });
+    </script>
+</body>
+</html>

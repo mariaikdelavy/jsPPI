@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio de Números Aleatórios</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container{
+            max-width: 400px;
+            margin: auto;
+        }
+        button{
+            padding: 10px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        ul{
+            margin-top: 20px;
+            padding: 0;
+            list-style-type: none;
+        }
+        li{
+            padding: 5px;
+            border-bottom: 1px black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sorteio de Números Aleatórios</h2>
+        <button id="drawButton">Sortear Número</button>
+        <ul id="numberList"></ul>
+    </div>
+
+    <script>
+        let randomNumbers=[];
+
+        document.getElementById('drawButton').addEventListener('click', function(){
+            const randomNumber=Math.floor(Math.random()*101);
+
+            randomNumbers.push(randomNumber);
+
+            const numberList=document.getElementById('numberList');
+            const listItem=document.createElement('li');
+            listItem.textContent="Número sorteado: " + randomNumber;
+            numberList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>

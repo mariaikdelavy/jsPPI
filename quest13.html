@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar cor de fundo</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: blueviolet;
+        }
+        button{
+            padding: 15px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: white;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        button:hover{
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <button id="changeColorButton">Alterar a cor de fundo</button>
+
+    <script>
+        function getRandomColor(){
+            const letters="0123456789ABCDEF";
+            let color="#";
+            for(let i = 0; i<6;i++){
+                color+=letters[Math.floor(Math.random()*16)];
+            }
+            return color;
+        }
+
+        const button=document.getElementById("changeColorButton");
+        button.addEventListener("click", function(){
+            const randomColor=getRandomColor();
+            document.body.style.backgroundColor=randomColor;
+        });
+    </script>
+</body>
+</html>

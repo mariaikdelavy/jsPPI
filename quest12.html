@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio de Números Aleatórios com Intervalo</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container{
+            max-width: 400px;
+            margin: auto;
+        }
+        input{
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button{
+            padding: 10px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+        ul{
+            margin-top: 20px;
+            padding: 0;
+            list-style-type: none;
+        }
+        li{
+            padding: 5px;
+            border-bottom: 1px black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sorteio de Números Aleatórios</h2>
+        <label for="minValue">Valor Mínimo:</label>
+        <input type="number" id="minValue" placeholder="Ex: 0">
+
+        <label for="maxValue">Valor Máximo:</label>
+        <input type="number" id="maxValue" placeholder="Ex: 100">
+
+        <button id="drawButton">Sortear Número</button>
+        <ul id="numberList"></ul>
+    </div>
+
+    <script>
+        let drawResults=[];
+
+        document.getElementById('drawButton').addEventListener('click', function(){
+
+            const minValue=parseInt(document.getElementById('minValue').value);
+            const maxValue=parseInt(document.getElementById('maxValue').value);
+
+            if(isNaN(minValue)||isNaN(maxValue)){
+                alert("Por favor, insira valores válidos para o intervalo");
+                return;
+            }
+            
+            if(minValue>maxValue){
+                alert("O valor mínimo deve ser menor que o valor máximo");
+                return;
+            }
+
+            const randomNumber=Math.floor(Math.random()*(maxValue-minValue+1))+minValue;
+
+            const drawData={
+                min:minValue,
+                max:maxValue,
+                number:randomNumber
+            };
+
+            drawResults.push(drawData);
+
+            const numberList=document.getElementById('numberList');
+            const listItem=document.createElement('li');
+            listItem.textContent=
+                "Intervalo: [" + drawData.min + "-" + drawData.max + "]|Número sorteado: " +drawData.number;
+            numberList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomizador de Cores</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        .color-container{
+            display: flex;
+            gap: 10px;
+        }
+        .color-block{
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(190, 182, 182, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="color-container" id="colorContainer"></div>
+    
+    <script>
+        const colorContainer=document.getElementById("colorContainer");
+
+        function getRandomColor(){
+            const letters="0123456789ABCDEF";
+            let color="#";
+            for(let i = 0; i<6;i++){
+                color+=letters[Math.floor(Math.random()*16)];
+            }
+            return color;
+        }
+
+        function randomizeColors(){
+            const blocks=document.querySelectorAll(".color-block");
+            blocks.forEach(block=>{
+                const newColor=getRandomColor();
+                block.style.backgroundColor=newColor;
+                block.textContent=newColor;
+            });
+        }
+
+        function createColorBlocks(amount){
+            for(let i = 0; i<amount;i++){
+                const block=document.createElement("div");
+                block.classList.add("color-block");
+                block.style.backgroundColor="#ffffff";
+                block.textContent="FFFFFF";
+                colorContainer.appendChild(block);
+            }
+        }
+
+        createColorBlocks(5);
+
+        document.addEventListener("keydown", (event)=>{
+            if(event.code==="Space"){
+                event.preventDefault();
+                randomizeColors();
+            }
+        });
+
+        randomizeColors();
+    </script>
+</body>
+</html>
