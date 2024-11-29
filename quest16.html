@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <style>
-        body{
+        body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -14,40 +14,47 @@
             margin: 0;
             background-color: aliceblue;
         }
-        .calculator{
+        .calculator {
             width: 300px;
             background-color: white;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             border-radius: 20px;
             overflow: hidden;
         }
-        .display{
+        .display {
             background-color: black;
             color: white;
             font-size: 36px;
             padding: 20px;
             text-align: right;
         }
-        .buttons{
+        .buttons {
             display: grid;
-            grid-template-columns: repeat(4. 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 1px;
         }
-        button:active{
+        button {
+            padding: 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+        button:active {
             opacity: 0.7;
         }
-        .operator{
+        .operator {
             background-color: black;
+            color: white;
         }
-        .equeals{
-            background-color: aliceblue;
+        .equals {
+            background-color: orange;
             color: white;
             grid-column: span 1;
         }
-        .clear{
-            background-color: aliceblue;
+        .clear {
+            background-color: lightgray;
         }
-        .number{
+        .number {
             background-color: aliceblue;
         }
     </style>
@@ -60,17 +67,74 @@
             <button class="operator" data-operator="-">-</button>
             <button class="operator" data-operator="*">*</button>
             <button class="operator" data-operator="/">/</button>
-            <button class="operator" data-operator="7">7</button>
-            <button class="operator" data-operator="8">8</button>
-            <button class="operator" data-operator="9">9</button>
-            <buttonn class="equals">=</buttonn>
-            <button class="operator" data-operator="4">4</button>
-            <button class="operator" data-operator="5">5</button>
-            <button class="operator" data-operator="6">6</button>
-            <button class=""
-            <button class="operator" data-operator="+">+</button>
-
+            <button class="number" data-number="7">7</button>
+            <button class="number" data-number="8">8</button>
+            <button class="number" data-number="9">9</button>
+            <button class="equals">=</button>
+            <button class="number" data-number="4">4</button>
+            <button class="number" data-number="5">5</button>
+            <button class="number" data-number="6">6</button>
+            <button class="clear">AC</button>
+            <button class="number" data-number="1">1</button>
+            <button class="number" data-number="2">2</button>
+            <button class="number" data-number="3">3</button>
+            <button class="number" data-number="0" style="grid-column: span 2;">0</button>
+            <button class="number" data-number=".">.</button>
         </div>
     </div>
+
+    <script>
+        const display = document.getElementById('display');
+        const buttons = document.querySelectorAll('button');
+        let currentInput = '';
+        let previousInput = '';
+        let operator = '';
+
+        function updateDisplay(value) {
+            display.textContent = value || '0';
+        }
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (button.classList.contains('number')) {
+                    currentInput += button.getAttribute('data-number');
+                    updateDisplay(currentInput);
+                } else if (button.classList.contains('operator')) {
+                    if (currentInput) {
+                        previousInput = currentInput;
+                        currentInput = '';
+                    }
+                    operator = button.getAttribute('data-operator');
+                } else if (button.classList.contains('equals')) {
+                    if (previousInput && currentInput && operator) {
+                        let result = 0;
+                        switch (operator) {
+                            case '+':
+                                result = parseFloat(previousInput) + parseFloat(currentInput);
+                                break;
+                            case '-':
+                                result = parseFloat(previousInput) - parseFloat(currentInput);
+                                break;
+                            case '*':
+                                result = parseFloat(previousInput) * parseFloat(currentInput);
+                                break;
+                            case '/':
+                                result = parseFloat(previousInput) / parseFloat(currentInput);
+                                break;
+                        }
+                        updateDisplay(result);
+                        previousInput = result.toString();
+                        currentInput = '';
+                        operator = '';
+                    }
+                } else if (button.classList.contains('clear')) {
+                    currentInput = '';
+                    previousInput = '';
+                    operator = '';
+                    updateDisplay('');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
